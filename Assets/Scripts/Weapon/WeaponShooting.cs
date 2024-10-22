@@ -12,9 +12,12 @@ public class WeaponShooting : MonoBehaviour
 
     [SerializeField] GameObject muzzleEffect;
 
-    void Start()
+    private Animator animator;
+
+    void Awake()
     {
         cam = Camera.main;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -36,5 +39,8 @@ public class WeaponShooting : MonoBehaviour
         }
 
         muzzleEffect.GetComponent<VisualEffect>().Play();
+        animator.SetTrigger("RECOIL");
+
+        SoundManager.Instance.shootingSoundPistol.Play();
     }
 }
